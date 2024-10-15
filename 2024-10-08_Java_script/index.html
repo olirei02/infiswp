@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Top 10 Fußballer & Uhr</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="script.js"></script>
+    <style>
+        .time-display {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="mt-4">
+    <main class="container text-center bg-light p-3 mb-4 border">
+
+        <h1>Meine Top 10 Fußballspieler</h1>
+
+        <table class="table table-bordered table-hover">
+            <caption class="caption-top">Top 10 Fußballspieler nach Position</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th rowspan="2">Name</th>
+                    <th rowspan="2">Alter</th>
+                    <th colspan="2">Details</th>
+                </tr>
+                <tr>
+                    <th>Position</th>
+                    <th>Land</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lionel Messi</td>
+                    <td>36</td>
+                    <td>Stürmer</td>
+                    <td>Argentinien</td>
+                </tr>
+                <tr>
+                    <td>Cristiano Ronaldo</td>
+                    <td>38</td>
+                    <td>Stürmer</td>
+                    <td>Portugal</td>
+                </tr>
+                <tr>
+                    <td>Kylian Mbappé</td>
+                    <td>25</td>
+                    <td>Stürmer</td>
+                    <td>Frankreich</td>
+                </tr>
+                <tr>
+                    <td>Robert Lewandowski</td>
+                    <td>35</td>
+                    <td>Stürmer</td>
+                    <td>Polen</td>
+                </tr>
+                <tr>
+                    <td>Kevin De Bruyne</td>
+                    <td>32</td>
+                    <td>Mittelfeld</td>
+                    <td>Belgien</td>
+                </tr>
+                <tr>
+                    <td>Mohamed Salah</td>
+                    <td>31</td>
+                    <td>Stürmer</td>
+                    <td>Ägypten</td>
+                </tr>
+                <tr>
+                    <td>Neymar Jr.</td>
+                    <td>32</td>
+                    <td>Stürmer</td>
+                    <td>Brasilien</td>
+                </tr>
+                <tr>
+                    <td>Erling Haaland</td>
+                    <td>24</td>
+                    <td>Stürmer</td>
+                    <td>Norwegen</td>
+                </tr>
+                <tr>
+                    <td>Luka Modric</td>
+                    <td>38</td>
+                    <td>Mittelfeld</td>
+                    <td>Kroatien</td>
+                </tr>
+                <tr>
+                    <td>Virgil van Dijk</td>
+                    <td>32</td>
+                    <td>Verteidiger</td>
+                    <td>Niederlande</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="table-info">
+                    <td colspan="4">*Alter kann sich ändern, je nach Saison</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="mt-5">
+            <h2>Aktuelle Uhrzeit</h2>
+            <div id="clock" class="time-display">00:00:00</div>
+            <div class="btn-group mt-3">
+                <button id="startBtn" class="btn btn-success">Start Watch</button>
+                <button id="stopBtn" class="btn btn-danger">Stop Watch</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let timer;
+        const clock = document.getElementById('clock');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+
+        function updateClock() {
+            const now = new Date();
+            clock.textContent = now.toLocaleTimeString();
+        }
+
+        startBtn.addEventListener('click', () => {
+            timer = setInterval(updateClock, 1000);
+        });
+
+        stopBtn.addEventListener('click', () => {
+            clearInterval(timer);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+0x0cl2Q2M4a5yI6mDA6jMIGICv36" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
