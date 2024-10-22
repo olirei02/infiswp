@@ -1,0 +1,62 @@
+
+
+body {
+    background-color: rgb(96, 153, 239);
+    padding-left: 7%;
+    padding-right: 38%;
+    
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+.container{
+    display: flex;
+    align-content:flex-start;
+}
+
+header {
+    background-color: rgb(72, 97, 135);
+    display:flex;
+  justify-content: space-between;
+    
+}
+
+div #wetter {
+    background-color: rgb(72, 121, 195);
+}
+
+header a {
+    color: white;
+    margin-right: 20px;
+    padding-left: 5px;
+}
+
+a:hover {
+    cursor: pointer;
+    color: black;
+}
+
+p {
+    font-size: 25px;
+}
+
+.container {
+    background-color: rgb(81, 148, 224) ;
+}
+
+.text-container{
+    background-color: white;
+    
+}
+
+.text-container a{
+
+    font-size: large;
+}
+
+span{
+    font-size: larger;
+}
