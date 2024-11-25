@@ -1,0 +1,18 @@
+body{
+    background-color: blanchedalmond;
+   
+}
+
+.headline{
+   text-align: center;
+
+}
+
+header{
+    display:flex;
+   justify-content: flex-end;
+   justify-content: space-evenly;
+   background-color: darkgray;
+    font-size: large;
+
+}

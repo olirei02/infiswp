@@ -1,0 +1,59 @@
+import { assert } from "@std/assert";
+
+const dataPath = '../nmap-datenfiles';
+const outputFile = './output.csv'; // Pfad zur Ausgabedatei
+
+function parseDate(dateStr: string): Date {
+    const p = dateStr.split('_');
+    return new Date(`${p[0]}:${p[1]}:${p[2]}+${p[3]}:${p[4]}`);
+}
+
+async function main() {
+    try {
+        const dirEntries = await Deno.readDir(dataPath);
+        const outputData: string[] = []; // Speichert die Ergebnisse für die Datei
+        
+        for await (const dirEntry of dirEntries) {
+            if (!dirEntry.isFile) {
+                continue;
+            }
+            let date;
+            try {
+                date = parseDate(dirEntry.name);
+            } catch (err) {
+                assert(err instanceof Error);
+                console.error('Error parsing date:', dirEntry.name, err.message);
+                continue;
+            }
+            const filePath = `${dataPath}/${dirEntry.name}`;
+            let host = undefined;
+            let mac = undefined;
+
+            for (const lineRaw of (await Deno.readTextFile(filePath)).split('\n')) {
+                const line = lineRaw.replace(/\r/g, '').trim(); // `\r` entfernen und trimmen
+                if (line === '' || line.startsWith('Starting Nmap')
+                    || line.startsWith('Nmap done') || line.startsWith('Host is up')) {
+                    continue;
+                }
+                if (line.startsWith('Nmap scan report for ')) {
+                    host = line.split(' ')[4];
+                    continue;
+                }
+                if (line.startsWith('MAC Address: ')) {
+                    mac = line.split(' ')[2].toLowerCase();
+                    const result = `${date.toISOString()};${host};${mac}`;
+                    outputData.push(result); // Speichern für die Ausgabe
+                    console.log(result); // Zusätzlich ins Terminal ausgeben
+                }
+            }
+        }
+
+        // Ergebnisse in die Ausgabedatei schreiben
+        await Deno.writeTextFile(outputFile, outputData.join('\n'));
+        console.log(`Ergebnisse wurden in die Datei '${outputFile}' geschrieben.`);
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}
+
+await main();
