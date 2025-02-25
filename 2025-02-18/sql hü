@@ -1,0 +1,7 @@
+1.Aufgabe
+
+select product_id from products where low_fats = true and recyclable = true;
+
+2.Aufgabe
+
+select name from customer where referee_id != 2 or referee_id is null;
